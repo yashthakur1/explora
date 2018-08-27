@@ -28,12 +28,14 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void getCatalog() {
+        mView.showLoader();
         retrofit.create(ApiService.class).getCatalogData().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
                 .subscribe(new Observer<ResponseData>() {
                     @Override
                     public void onCompleted() {
+                        mView.hideLoader();
                         mView.showComplete();
                     }
 

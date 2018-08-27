@@ -14,6 +14,11 @@ public interface HomeContract {
         void showError(String message);
 
         void showComplete();
+
+        void showLoader();
+        void hideLoader();
+
+
     }
 
     interface Presenter {

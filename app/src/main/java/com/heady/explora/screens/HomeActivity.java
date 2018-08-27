@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.heady.explora.R;
@@ -25,6 +27,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     @BindView(R.id.rvExplore)
     RecyclerView rvExplore;
 
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +49,6 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         Logger.d("API callback");
         Logger.json(new Gson().toJson(catalogData));
 
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         ExploreAdapter exploreAdapter = new ExploreAdapter(context, catalogData.getCategories());
         rvExplore.setLayoutManager(new GridLayoutManager(this, 2));
         rvExplore.setAdapter(exploreAdapter);
@@ -58,5 +62,15 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     @Override
     public void showComplete() {
         Logger.d("API complete");
+    }
+
+    @Override
+    public void showLoader() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoader() {
+        progressBar.setVisibility(View.GONE);
     }
 }
