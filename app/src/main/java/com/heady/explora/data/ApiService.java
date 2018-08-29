@@ -14,4 +14,7 @@ public interface ApiService {
     @GET("/json")
     Observable<ResponseData> getCatalogData();
 
+    @GET("/api/?results=10")
+    Observable<ResponseData> getUsersData();
+
 }

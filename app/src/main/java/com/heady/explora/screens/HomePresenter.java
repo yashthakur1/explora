@@ -2,6 +2,7 @@ package com.heady.explora.screens;
 
 import com.heady.explora.data.ApiService;
 import com.heady.explora.screens.models.ResponseData;
+import com.heady.explora.screens.userModels.ResponseResult;
 
 import javax.inject.Inject;
 
@@ -29,10 +30,10 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void getCatalog() {
         mView.showLoader();
-        retrofit.create(ApiService.class).getCatalogData().subscribeOn(Schedulers.io())
+        retrofit.create(ApiService.class).getUsersData().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(new Observer<ResponseData>() {
+                .subscribe(new Observer<ResponseResult>() {
                     @Override
                     public void onCompleted() {
                         mView.hideLoader();
@@ -45,7 +46,7 @@ public class HomePresenter implements HomeContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(ResponseData catalogData) {
+                    public void onNext(ResponseResult userData) {
                         mView.showCatalog(catalogData);
                     }
                 });

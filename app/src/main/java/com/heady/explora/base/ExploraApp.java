@@ -30,7 +30,7 @@ public class ExploraApp extends Application {
 
         mNetComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule("https://stark-spire-93433.herokuapp.com"))
+                .netModule(new NetModule("https://randomuser.me/"))
                 .build();
     }
 
