@@ -47,7 +47,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
                     @Override
                     public void onNext(ResponseResult userData) {
-                        mView.showCatalog(catalogData);
+//                        mView.showCatalog(catalogData);
                     }
                 });
     }
