@@ -28,25 +28,27 @@
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleLarge"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExploreLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:visibility="visible"
+                android:layout_marginTop="10dp"
                 android:indeterminate="true"
+                android:indeterminateTint="@color/dark_green"
                 android:indeterminateTintMode="src_atop"
-                android:indeterminateTint="@color/dark_green"/>
+                android:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvExploreLabel" />
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvExplore"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvExploreLabel" />
+
 
             <RelativeLayout
                 android:id="@+id/rlShowMore"
@@ -97,7 +99,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/tvSocialLabel" />
+
 
             <TextView
                 android:id="@+id/tvBestSellers"

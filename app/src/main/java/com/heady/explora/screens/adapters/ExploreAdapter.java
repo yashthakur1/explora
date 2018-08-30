@@ -35,10 +35,8 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ExploreV
 
     @Override
     public void onBindViewHolder(ExploreViewHolder viewHolder, int position) {
-
         Category category = categories.get(position);
         viewHolder.tvCategory.setText(category.getName());
-
     }
 
     @Override

@@ -12,8 +12,12 @@ import com.heady.explora.R;
 import com.heady.explora.base.BaseActivity;
 import com.heady.explora.base.ExploraApp;
 import com.heady.explora.screens.adapters.ExploreAdapter;
+import com.heady.explora.screens.adapters.UserAdapter;
 import com.heady.explora.screens.models.ResponseData;
+import com.heady.explora.screens.userModels.ResponseResult;
 import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -48,10 +52,24 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     public void showCatalog(ResponseData catalogData) {
         Logger.d("API callback");
         Logger.json(new Gson().toJson(catalogData));
+//
+//        ExploreAdapter exploreAdapter = new ExploreAdapter(context, catalogData.getCategories());
+//        rvExplore.setLayoutManager(new GridLayoutManager(this, 2));
+//        rvExplore.setAdapter(exploreAdapter);
+    }
 
-        ExploreAdapter exploreAdapter = new ExploreAdapter(context, catalogData.getCategories());
-        rvExplore.setLayoutManager(new GridLayoutManager(this, 2));
+    @Override
+    public void showUsers(ArrayList<ResponseResult> users) {
+        LinearLayoutManager linearLayoutManagerVertical = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        final UserAdapter exploreAdapter = new UserAdapter(context, users);
+        rvExplore.setLayoutManager(linearLayoutManagerVertical);
         rvExplore.setAdapter(exploreAdapter);
+        exploreAdapter.listener = new UserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                exploreAdapter.removeAt(position);
+            }
+        };
     }
 
     @Override

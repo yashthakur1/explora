@@ -1,7 +1,6 @@
 package com.heady.explora.data;
 
-import com.heady.explora.screens.models.ResponseData;
-import com.heady.explora.screens.userModels.ResponseResult;
+import com.heady.explora.screens.userModels.DataResponse;
 
 import retrofit2.http.GET;
 import rx.Observable;
@@ -11,11 +10,11 @@ import rx.Observable;
  */
 
 public interface ApiService {
-
-    @GET("/json")
-    Observable<ResponseData> getCatalogData();
+//
+//    @GET("/json")
+//    Observable<ResponseData> getCatalogData();
 
     @GET("/api/?results=10")
-    Observable<ResponseResult> getUsersData();
+    Observable<DataResponse> getUsersData();
 
 }

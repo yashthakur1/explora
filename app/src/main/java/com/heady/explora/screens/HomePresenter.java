@@ -1,8 +1,13 @@
 package com.heady.explora.screens;
 
+import com.google.gson.Gson;
 import com.heady.explora.data.ApiService;
 import com.heady.explora.screens.models.ResponseData;
+import com.heady.explora.screens.userModels.DataResponse;
 import com.heady.explora.screens.userModels.ResponseResult;
+import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -33,7 +38,7 @@ public class HomePresenter implements HomeContract.Presenter {
         retrofit.create(ApiService.class).getUsersData().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(new Observer<ResponseResult>() {
+                .subscribe(new Observer<DataResponse>() {
                     @Override
                     public void onCompleted() {
                         mView.hideLoader();
@@ -46,8 +51,9 @@ public class HomePresenter implements HomeContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(ResponseResult userData) {
-//                        mView.showCatalog(catalogData);
+                    public void onNext(DataResponse userData) {
+                        Logger.json(new Gson().toJson(userData));
+                        mView.showUsers(userData.getResults());
                     }
                 });
     }
