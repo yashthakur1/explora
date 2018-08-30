@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.heady.explora"
+        applicationId "com.user.test"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
